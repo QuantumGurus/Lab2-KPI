@@ -25,7 +25,7 @@ func TestComputeHandler_Success(t *testing.T) {
 
 func TestComputeHandler_InvalidInput(t *testing.T) {
 	// Input containing invalid characters for the PrefixToPostfix conversion
-	input := "+ a 3"
+	input := "+ = 3"
 	var output bytes.Buffer
 	handler := ComputeHandler{
 		Input:  strings.NewReader(input),

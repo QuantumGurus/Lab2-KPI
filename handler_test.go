@@ -23,4 +23,19 @@ func TestComputeHandler_Success(t *testing.T) {
 	assert.Equal(t, expected, output.String())
 }
 
+func TestComputeHandler_InvalidInput(t *testing.T) {
+	// Input containing invalid characters for the PrefixToPostfix conversion
+	input := "+ a 3"
+	var output bytes.Buffer
+	handler := ComputeHandler{
+		Input:  strings.NewReader(input),
+		Output: &output,
+	}
+
+	err := handler.Compute()
+
+	// Assuming PrefixToPostfix returns an error for invalid characters
+	assert.Error(t, err, "expected an error for invalid input characters")
+}
+
 // Include more tests for error handling and other cases.

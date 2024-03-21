@@ -68,7 +68,7 @@ func PrefixToPostfix(prefix string) (string, error) {
 			if IsOperand(token) {
 				stack.Push(token)
 			} else {
-				return "", errors.New("invalid token: " + token)
+				return "", errors.New("invalid token")
 			}
 		} else {
 			operand1 := stack.Pop()

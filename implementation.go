@@ -32,8 +32,14 @@ func (s *Stack) IsEmpty() bool {
 }
 
 // IsOperator checks if a given token is an operator.
-func IsOperator(token string) bool {
-	return strings.ContainsAny(token, "+-*/^")
+func IsOperator(token string) (bool, error) {
+	if strings.ContainsAny(token, "+-*/^") {
+		if len(token) != 1 {
+			return false, errors.New("please separate all characters with spaces")
+		}
+	}
+
+	return strings.ContainsAny(token, "+-*/^"), nil
 }
 
 func IsOperand(token string) bool {
@@ -54,11 +60,16 @@ func PrefixToPostfix(prefix string) (string, error) {
 	}
 	for i := len(tokens) - 1; i >= 0; i-- {
 		token := tokens[i]
-		if !IsOperator(token) && !IsOperand(token) {
-			return "", errors.New("invalid token")
+		isOperator, err := IsOperator(token)
+		if err != nil {
+			return "", err
 		}
-		if !IsOperator(token) {
-			stack.Push(token)
+		if !isOperator {
+			if IsOperand(token) {
+				stack.Push(token)
+			} else {
+				return "", errors.New("invalid token: " + token)
+			}
 		} else {
 			operand1 := stack.Pop()
 			operand2 := stack.Pop()

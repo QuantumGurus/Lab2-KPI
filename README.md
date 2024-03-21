@@ -1,4 +1,6 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
+Reference to commit 2 of the laboratory work on software architecture
 ---
 
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+[A link to a commit with a successful build](https://github.com/QuantumGurus/Lab2-KPI/actions/runs/8381082362)
+
+[A reference to a commit with a failed build](https://github.com/QuantumGurus/Lab2-KPI/actions/runs/8381032827)
